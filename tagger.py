@@ -43,11 +43,11 @@ class POSTagger(nn.Module):
         )
 
         if self.pretrained == "comick":
-            self.load_state_dict(torch.load(Path("pretrained_models/comick.pth")),)
+            self.load_state_dict(torch.load(Path("pretrained_models/comick.pth"), map_location=torch.device('cpu')))
         elif self.pretrained == "zero":
-            self.load_state_dict(torch.load(Path("pretrained_models/zero.pth")),)
+            self.load_state_dict(torch.load(Path("pretrained_models/zero.pth"), map_location=torch.device('cpu')))
         elif self.pretrained == "unknown":
-            self.load_state_dict(torch.load(Path("pretrained_models/unk.pth")),)
+            self.load_state_dict(torch.load(Path("pretrained_models/unk.pth"), map_location=torch.device('cpu')))
         else:
             raise ValueError(f"Pretrained {self.pretrained} is not available, use instead 'comick', 'zero', or 'unknown'.")
         
