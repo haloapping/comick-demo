@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 from pathlib import Path
+
 class POSTagger(nn.Module):
     def __init__(
         self,
@@ -42,17 +43,20 @@ class POSTagger(nn.Module):
             nn.Softmax(dim=-1)
         )
 
-        if self.pretrained == "comick":
-            self.load_state_dict(torch.load(Path("pretrained_models/comick.pth"), map_location=torch.device('cpu')))
-        elif self.pretrained == "zero":
-            self.load_state_dict(torch.load(Path("pretrained_models/zero.pth"), map_location=torch.device('cpu')))
-        elif self.pretrained == "unknown":
-            self.load_state_dict(torch.load(Path("pretrained_models/unk.pth"), map_location=torch.device('cpu')))
-        else:
-            raise ValueError(f"Pretrained {self.pretrained} is not available, use instead 'comick', 'zero', or 'unknown'.")
+        self.select_pretrained(self.pretrained)
         
         if init_wb_with_kaiming_normal:
             self.init_wb()
+
+    def select_pretrained(self, name: str):
+        if name == "comick":
+            self.load_state_dict(torch.load(Path("pretrained_models/comick.pth"), map_location=torch.device('cpu')))
+        elif name == "zero":
+            self.load_state_dict(torch.load(Path("pretrained_models/zero.pth"), map_location=torch.device('cpu')))
+        elif name == "unknown":
+            self.load_state_dict(torch.load(Path("pretrained_models/unk.pth"), map_location=torch.device('cpu')))
+        else:
+            raise ValueError(f"Pretrained {self.pretrained} is not available, use instead 'comick', 'zero', or 'unknown'.")
 
     def init_wb(self):
         for module in self.modules():
