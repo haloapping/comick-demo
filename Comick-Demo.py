@@ -11,7 +11,7 @@ st.write(
 )
 
 st.write(
-    "<h4 style='text-align: left;'>Choose text</h4>",
+    "<h4 style='text-align: left;'>Choose Text</h4>",
     unsafe_allow_html=True
 )
 
@@ -28,6 +28,16 @@ word_embeddings = word_embedding(idxs_tokenize)
 comick_pos_tagger = POSTagger()
 pred_tags = idxs_to_tags(comick_pos_tagger(word_embeddings).argmax(dim=-1))
 comick_pos_tags = [(word + " (OOV)", tag) if word.lower() in oov_tokens else (word, tag) for word, tag in zip(tokenize_sents[selected_text], pred_tags)]
+
+st.write(
+    "<h4 style='text-align: left; margin-top: 20px;'>Text</h4>",
+    unsafe_allow_html=True
+)
+
+st.write(
+    sents[selected_text],
+    unsafe_allow_html=True
+)
 
 st.write(
     "<h4 style='text-align: left; margin-top: 20px;'>Part-of-Speech Tag</h4>",
