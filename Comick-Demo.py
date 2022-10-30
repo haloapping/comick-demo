@@ -24,8 +24,8 @@ selected_text = st.selectbox(
 
 oov_tokens = list(pickle.load(open(Path("word_embeddings/oov_embedding_dict.pkl"), "rb")).keys())
 words, idxs_tokenize = text_preprocessing(tokenize_sents[selected_text])
-word_embeddings = word_embedding(idxs_tokenize, mode="comick")
-comick_pos_tagger = POSTagger(pretrained="comick")
+word_embeddings = word_embedding(idxs_tokenize)
+comick_pos_tagger = POSTagger()
 pred_tags = idxs_to_tags(comick_pos_tagger(word_embeddings).argmax(dim=-1))
 comick_pos_tags = [(word + " (OOV)", tag) if word.lower() in oov_tokens else (word, tag) for word, tag in zip(tokenize_sents[selected_text], pred_tags)]
 
