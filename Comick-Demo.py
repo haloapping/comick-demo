@@ -5,6 +5,12 @@ from tagger import POSTagger
 from utils import text_preprocessing, word_embedding, idxs_to_tags, print_annotated_text
 from oov_sents import sents, tokenize_sents
 
+st.set_page_config(
+	    page_title="Comick",
+	    page_icon="💚",
+	    layout="centered"
+	)
+
 st.write(
     "<h2 style='text-align: center; margin-bottom: 50px'>Comick Demo Application</h2>",
     unsafe_allow_html=True
