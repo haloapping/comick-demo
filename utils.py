@@ -5,8 +5,6 @@ from annotated_text import annotated_text
 
 token_to_idx = pickle.load(open(Path("token/token_to_idx.pkl"), "rb"))
 oov_embeddings = pickle.load(open(Path("word_embeddings/oov_embedding_dict.pkl"), "rb"))
-zero_word_embeddings = pickle.load(open(Path("word_embeddings/zero_oov_word_embeddings.pkl"), "rb"))
-unk_word_embeddings = pickle.load(open(Path("word_embeddings/unk_oov_word_embeddings.pkl"), "rb"))
 comick_word_embeddings = pickle.load(open(Path("word_embeddings/comick_word_embeddings.pkl"), "rb"))
 
 def text_preprocessing(tokens: str):
@@ -16,13 +14,8 @@ def text_preprocessing(tokens: str):
 
     return tokens, tokens_to_idxs
 
-def word_embedding(idxs, mode="comick"):
-    if mode == "zero":
-        return zero_word_embeddings(idxs)
-    elif mode == "unk":
-        return unk_word_embeddings(idxs)
-    else:
-        return comick_word_embeddings(idxs)
+def word_embedding(idxs):
+    return comick_word_embeddings(idxs)
 
 def idxs_to_tags(idxs):
     tags = ["CC", "CD", "DT", "FW", "IN", "JJ", "MD", "NEG", "NN", "NND", "NNP", "OD", "PR", "PRP", "RB", "RP", "SC", "SYM", "UH", "VB", "WH", "X", "Z", "UNK"]
