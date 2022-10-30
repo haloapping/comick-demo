@@ -13,7 +13,6 @@ class POSTagger(nn.Module):
         output_size=24,
         batch_first=True,
         bidirectional=True,
-        pretrained="comick",
         init_wb_with_kaiming_normal=False
     ):
         super(POSTagger, self).__init__()
@@ -26,7 +25,6 @@ class POSTagger(nn.Module):
         self.output_size = output_size
         self.batch_first = batch_first
         self.bidirectional = bidirectional
-        self.pretrained = pretrained
                 
         self.feature = nn.LSTM(
             input_size = self.input_size,
@@ -43,20 +41,11 @@ class POSTagger(nn.Module):
             nn.Softmax(dim=-1)
         )
 
-        self.select_pretrained(self.pretrained)
+        self.load_state_dict(torch.load(Path("pretrained_models/comick.pth"), map_location=torch.device('cpu')))
         
         if init_wb_with_kaiming_normal:
             self.init_wb()
 
-    def select_pretrained(self, name: str):
-        if name == "comick":
-            self.load_state_dict(torch.load(Path("pretrained_models/comick.pth"), map_location=torch.device('cpu')))
-        elif name == "zero":
-            self.load_state_dict(torch.load(Path("pretrained_models/zero.pth"), map_location=torch.device('cpu')))
-        elif name == "unknown":
-            self.load_state_dict(torch.load(Path("pretrained_models/unk.pth"), map_location=torch.device('cpu')))
-        else:
-            raise ValueError(f"Pretrained {self.pretrained} is not available, use instead 'comick', 'zero', or 'unknown'.")
 
     def init_wb(self):
         for module in self.modules():
