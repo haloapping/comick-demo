@@ -1,5 +1,5 @@
 sents = {
-    "sent_1": "ISAF menyatakan ledakan tersebut bukan serangan jibaku, tapi jurupotret AFP di tempat kejadian itu melihat jasad laki-laki, yang disebut polisi penyerang jibakunya.",
+    "sent_1": "ISAF menyatakan ledakan tersebut bukan serangan jibaku, tapi juru potret AFP di tempat kejadian itu melihat jasad laki-laki, yang disebut polisi penyerang jibakunya.",
     "sent_2": "Dengan terjadinya bencana alam seperti gempa bumi, banjir, tanah longsor, sehingga dalam sepuluh tahun terakhir terjadi 129 kasus bencana alam yang menelan 320.000 orang korban jiwa dengan jumlah kerugian 9,64 miliar dolar AS.",
     "sent_3": "Orang-orang bersenjata itu datang dengan enam kapal ke pangkalan tepi sungai itu di daerah pinggiran Yenagoa, ibukota Bayelsa.",
     "sent_4": "Sementara divisi kontraktor penambangan, kata dia, memberikan kontribusi pendapatan sebesar 41 persen dan sisanya pendapatan sebesar 8 persen disumbangkan oleh segmen usaha perseroan di bidang penjualan komoditas batu bara, melalui konsesi tambang batu bara PT Dasa Eka Jasatama DEJ yang sejak 30 April 2007 dimiliki sepenuhnya oleh perseroan.",
