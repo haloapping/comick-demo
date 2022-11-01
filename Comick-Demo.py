@@ -4,6 +4,7 @@ from pathlib import Path
 from tagger import POSTagger
 from utils import text_preprocessing, word_embedding, idxs_to_tags, print_annotated_text
 from oov_sents import sents, tokenize_sents
+from models import list_model, pretrained_models
 
 st.set_page_config(
 	    page_title="Comick",
@@ -28,13 +29,6 @@ selected_text = st.selectbox(
     label_visibility="hidden"
 )
 
-oov_tokens = list(pickle.load(open(Path("word_embeddings/oov_embedding_dict.pkl"), "rb")).keys())
-words, idxs_tokenize = text_preprocessing(tokenize_sents[selected_text])
-word_embeddings = word_embedding(idxs_tokenize)
-comick_pos_tagger = POSTagger()
-pred_tags = idxs_to_tags(comick_pos_tagger(word_embeddings).argmax(dim=-1))
-comick_pos_tags = [(word + " (OOV)", tag) if word.lower() in oov_tokens else (word, tag) for word, tag in zip(tokenize_sents[selected_text], pred_tags)]
-
 st.write(
     "<h4 style='text-align: left; margin-top: 20px;'>Text</h4>",
     unsafe_allow_html=True
@@ -44,6 +38,26 @@ st.write(
     sents[selected_text],
     unsafe_allow_html=True
 )
+
+st.write(
+    "<h4 style='text-align: left; margin-top: 20px;'>Choose Model</h4>",
+    unsafe_allow_html=True
+)
+
+selected_model = st.selectbox(
+    '',
+    options=list(list_model.keys()),
+    format_func=lambda option: list_model[option],
+    index=16,
+    label_visibility="hidden"
+)
+
+oov_tokens = list(pickle.load(open(Path("word_embeddings/oov_embedding_dict.pkl"), "rb")).keys())
+words, idxs_tokenize = text_preprocessing(tokenize_sents[selected_text])
+word_embeddings = word_embedding(idxs_tokenize)
+comick_pos_tagger = POSTagger(pretrained_models[selected_model])
+pred_tags = idxs_to_tags(comick_pos_tagger(word_embeddings).argmax(dim=-1))
+comick_pos_tags = [(word + " (OOV)", tag) if word.lower() in oov_tokens else (word, tag) for word, tag in zip(tokenize_sents[selected_text], pred_tags)]
 
 st.write(
     "<h4 style='text-align: left; margin-top: 20px;'>Part-of-Speech Tag</h4>",
