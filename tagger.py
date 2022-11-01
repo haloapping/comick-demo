@@ -5,6 +5,7 @@ from pathlib import Path
 class POSTagger(nn.Module):
     def __init__(
         self,
+        pretrained,
         input_size=64,
         hidden_size=128,
         dropout=0,
@@ -17,6 +18,7 @@ class POSTagger(nn.Module):
     ):
         super(POSTagger, self).__init__()
         
+        self.pretrained = pretrained
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.dropout = dropout
@@ -41,11 +43,10 @@ class POSTagger(nn.Module):
             nn.Softmax(dim=-1)
         )
 
-        self.load_state_dict(torch.load(Path("pretrained_models/comick.pth"), map_location=torch.device('cpu')))
+        self.load_state_dict(torch.load(self.pretrained, map_location=torch.device('cpu')))
         
         if init_wb_with_kaiming_normal:
             self.init_wb()
-
 
     def init_wb(self):
         for module in self.modules():
