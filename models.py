@@ -1,0 +1,41 @@
+from pathlib import Path
+
+list_model = {
+    "model_1": "Model with Context Size = 1",
+    "model_2": "Model with Context Size = 5",
+    "model_3": "Model with Context Size = 10",
+    "model_4": "Model with Context Size = 15",
+    "model_5": "Model with Context Size = 20",
+    "model_6": "Model with Context Size = 25",
+    "model_7": "Model with Context Size = 30",
+    "model_8": "Model with Context Size = 35",
+    "model_9": "Model with Context Size = 40",
+    "model_10": "Model with Context Size = 45",
+    "model_11": "Model with Context Size = 50",
+    "model_12": "Model with Context Size = 55",
+    "model_13": "Model with Context Size = 60",
+    "model_14": "Model with Context Size = 65",
+    "model_15": "Model with Context Size = 70",
+    "model_16": "Model with Context Size = 75",
+    "model_17": "Model with Context Size = 79",
+}
+
+pretrained_models = {
+    "model_1": Path("pretrained_models/comick-1-context-size.pth"),
+    "model_2": Path("pretrained_models/comick-5-context-size.pth"),
+    "model_3": Path("pretrained_models/comick-10-context-size.pth"),
+    "model_4": Path("pretrained_models/comick-15-context-size.pth"),
+    "model_5": Path("pretrained_models/comick-20-context-size.pth"),
+    "model_6": Path("pretrained_models/comick-25-context-size.pth"),
+    "model_7": Path("pretrained_models/comick-30-context-size.pth"),
+    "model_8": Path("pretrained_models/comick-35-context-size.pth"),
+    "model_9": Path("pretrained_models/comick-40-context-size.pth"),
+    "model_10": Path("pretrained_models/comick-45-context-size.pth"),
+    "model_11": Path("pretrained_models/comick-50-context-size.pth"),
+    "model_12": Path("pretrained_models/comick-55-context-size.pth"),
+    "model_13": Path("pretrained_models/comick-60-context-size.pth"),
+    "model_14": Path("pretrained_models/comick-65-context-size.pth"),
+    "model_15": Path("pretrained_models/comick-70-context-size.pth"),
+    "model_16": Path("pretrained_models/comick-75-context-size.pth"),
+    "model_17": Path("pretrained_models/comick-79-context-size.pth"),
+}
