@@ -7,10 +7,10 @@ from oov_sents import sents, tokenize_sents
 from models import list_model, pretrained_models
 
 st.set_page_config(
-	    page_title="Comick",
-	    page_icon="💚",
-	    layout="centered"
-	)
+    page_title="Comick",
+    page_icon="💚",
+    layout="centered"
+)
 
 st.write(
     "<h2 style='text-align: center; margin-bottom: 50px'>Comick Demo Application</h2>",
@@ -57,7 +57,7 @@ words, idxs_tokenize = text_preprocessing(tokenize_sents[selected_text])
 word_embeddings = word_embedding(idxs_tokenize)
 comick_pos_tagger = POSTagger(pretrained_models[selected_model])
 pred_tags = idxs_to_tags(comick_pos_tagger(word_embeddings).argmax(dim=-1))
-comick_pos_tags = [(word + " (OOV)", tag) if word.lower() in oov_tokens else (word, tag) for word, tag in zip(tokenize_sents[selected_text], pred_tags)]
+comick_pos_tags = [(f"{word} (OOV)", tag) if word.lower() in oov_tokens else (word, tag) for word, tag in zip(tokenize_sents[selected_text], pred_tags)]
 
 st.write(
     "<h4 style='text-align: left; margin-top: 20px;'>Part-of-Speech Tag</h4>",
