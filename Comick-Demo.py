@@ -98,3 +98,8 @@ expander.write(
     """,
     unsafe_allow_html=True
 )
+
+st.write(
+    "<p style='text-align: left; margin-top: 60px; text-align:center;'>Made with 💚 by <a href='https://haloapping.github.io/' target=_blank>haloapping</a></p>",
+    unsafe_allow_html=True
+)
